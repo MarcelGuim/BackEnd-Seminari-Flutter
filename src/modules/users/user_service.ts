@@ -18,14 +18,14 @@ export const getUserById = async (id: string) => {
 };
 
 export const updateUser = async (id: string, updateData: Partial<IUser>) => {
-    return await User.updateOne({ _id: id }, { $set: updateData });
+    return await User.findByIdAndUpdate(id, updateData, { new: true });
 };
 
 export const deleteUser = async (id: string) => {
     return await User.deleteOne({ _id: id });
 };
 
-export const loginUser = async (email: string, password: string): Promise<{ id: string; email: string } | null> => {
+export const loginUser = async (email: string, password: string): Promise<IUser | null> => {
 
     const user = await User.findOne({ email });
     if (!user) {
@@ -36,5 +36,5 @@ export const loginUser = async (email: string, password: string): Promise<{ id: 
         throw new Error("contrasenya incorrecta");
     }
 
-    return { id: user._id.toString(), email: user.email };
+    return user;
 };

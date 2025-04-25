@@ -38,7 +38,8 @@ export const getUserByIdHandler = async (req: Request, res: Response) => {
 export const updateUserHandler = async (req: Request, res: Response) => {
     try {
         const data = await updateUser(req.params.id, req.body);
-        res.json(data);
+        console.log(data);
+        res.status(200).json(data);
     } catch (error: any) {
         res.status(500).json({ message: error.message });
     }
@@ -54,14 +55,14 @@ export const deleteUserHandler = async (req: Request, res: Response) => {
 export const loginUserHandler = async (req: Request, res: Response) => {
     try {
         const { email, password } = req.body;
-
+        console.log(email, password);
         if (!email || !password) {
             return res.status(400).json({ message: "cal posar email i contrasenya" });
         }
 
         const data = await loginUser(email, password);
-
-        res.json(data);
+        console.log(data);
+        res.status(200).json(data);
     } catch (error: any) {
         res.status(401).json({ message: error.message });
     }

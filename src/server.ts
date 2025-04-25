@@ -72,7 +72,7 @@ app.get('/', (req, res) => {
 // Conexión a MongoDB
 //mongoose;
 mongoose
-    .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/seminariAPI')
+    .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/test')
     .then(() => console.log('Connected to DB'))
     .catch((error) => console.error('DB Connection Error:', error));
 
